@@ -92,5 +92,15 @@ namespace Proyecto_Final_Coder_C_
             }
         }
         #endregion
+
+        public Producto()
+        {
+            _id = string.Empty;
+            _descripcion = string.Empty;
+            _costo = 0;
+            _precioVenta = 0;
+            _stock = 0;
+            _idUsuario = string.Empty;
+        }
     }
 }

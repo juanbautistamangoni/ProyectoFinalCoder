@@ -68,5 +68,13 @@ namespace Proyecto_Final_Coder_C_
         }
 
         #endregion
+
+        public ProductoVendido()
+        {
+            _id = string.Empty;
+            _idProducto = string.Empty;
+            _stock = 0;
+            _idVenta = string.Empty; 
+        }
     }
 }

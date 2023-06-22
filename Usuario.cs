@@ -13,7 +13,7 @@
 
         #endregion
 
-        #region Propeidades
+        #region Propiedades
         public string Id
         {
             get 
@@ -87,6 +87,16 @@
         }
 
         #endregion
+
+        public Usuario()
+        {
+            _id = string.Empty;
+            _nombre = string.Empty;
+            _apellido = string.Empty;
+            _nombreUsuario = string.Empty;
+            _contraseña = string.Empty;
+            _mail = string.Empty;
+        }
 
     }
 }

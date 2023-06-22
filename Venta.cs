@@ -11,9 +11,10 @@ namespace Proyecto_Final_Coder_C_
         #region Atributos
 
         private string _id;
-        private string _idProducto;
-        private int _stock;
-        private string _idVenta;
+        private string _comentarios;
+        //private string _idProducto;
+        //private int _stock;
+        //private string _idVenta;
 
         #endregion
 
@@ -30,41 +31,59 @@ namespace Proyecto_Final_Coder_C_
             }
         }
 
-        public string IdProducto
+        public string Comentarios
         {
             get
             {
-                return _idProducto;
+                return _comentarios;
             }
             set
             {
-                _idProducto = value;
+                _comentarios = value;
             }
         }
 
-        public int Stock
-        {
-            get 
-            {
-            return _stock;
-            }
-            set
-            {
-                _stock = value;
-            }
-        }
+        //public string IdProducto
+        //{
+        //    get
+        //    {
+        //        return _idProducto;
+        //    }
+        //    set
+        //    {
+        //        _idProducto = value;
+        //    }
+        //}
 
-        public string IdVenta
-        {
-            get
-            {
-                return _idVenta;
-            }
-            set
-            {
-                _idVenta = value;
-            }
-        }
+        //public int Stock
+        //{
+        //    get 
+        //    {
+        //    return _stock;
+        //    }
+        //    set
+        //    {
+        //        _stock = value;
+        //    }
+        //}
+
+        //public string IdVenta
+        //{
+        //    get
+        //    {
+        //        return _idVenta;
+        //    }
+        //    set
+        //    {
+        //        _idVenta = value;
+        //    }
+        //}
         #endregion
+
+        public Venta() 
+        {
+            _id = string.Empty; 
+            _comentarios = string.Empty;
+        }
     }
 }
