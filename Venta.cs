@@ -12,6 +12,7 @@ namespace Proyecto_Final_Coder_C_
 
         private string _id;
         private string _comentarios;
+        private string _idUsuario;
         //private string _idProducto;
         //private int _stock;
         //private string _idVenta;
@@ -40,6 +41,18 @@ namespace Proyecto_Final_Coder_C_
             set
             {
                 _comentarios = value;
+            }
+        }
+
+        public string IdUsuario
+        {
+            get
+            {
+                return _idUsuario;
+            }
+            set
+            {
+                _idUsuario = value;
             }
         }
 
@@ -84,6 +97,7 @@ namespace Proyecto_Final_Coder_C_
         {
             _id = string.Empty; 
             _comentarios = string.Empty;
+            _idUsuario = string.Empty;
         }
     }
 }
