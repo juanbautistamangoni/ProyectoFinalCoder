@@ -55,7 +55,7 @@ namespace Proyecto_Final_Coder_C_.Metodos
             Usuario usuario = new Usuario(); ; 
             using (SqlConnection conexion = new SqlConnection(connectionString))
             {
-                string query = "select id,nombre,apellido,nombreUsuario,contrasena,mail from Usuario where id = @idUsuario"; //TRAE TODOS LOS USUARIOS DE LA TABLA
+                string query = @"select id,nombre,apellido,nombreUsuario,contrasena,mail from Usuario where id = @idUsuario"; //TRAE TODOS LOS USUARIOS DE LA TABLA
                 var parametro = new SqlParameter();
                 parametro.ParameterName = "idUsuario";
                 parametro.SqlDbType = SqlDbType.BigInt;
@@ -123,7 +123,7 @@ namespace Proyecto_Final_Coder_C_.Metodos
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
             {
-                string query = "select id,descripciones,costo,precioVenta,stock,idUsuario from Producto where idUsuario = @idUsuario"; //TRAE TODOS LOS PRODUCTOS DEL USUARIO PASADO COMO PARAMETRO
+                string query = @"select id,descripciones,costo,precioVenta,stock,idUsuario from Producto where idUsuario = @idUsuario"; //TRAE TODOS LOS PRODUCTOS DEL USUARIO PASADO COMO PARAMETRO
                 var parametro = new SqlParameter();
                 parametro.ParameterName = "idUsuario";
                 parametro.SqlDbType = SqlDbType.BigInt;
@@ -192,7 +192,7 @@ namespace Proyecto_Final_Coder_C_.Metodos
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
             {
-                string query = "select PV.id, PV.idProducto, PV.stock, PV.idVenta from Producto P inner join ProductoVendido PV on P.idProducto = PV.idProducto where idUsuario = @idUsuario";   //TRAE LOS PRODUCTOS VENDIDOS DEL USUARIO PASADO COMO PARAMETRO
+                string query = @"select PV.id, PV.idProducto, PV.stock, PV.idVenta from Producto P inner join ProductoVendido PV on P.idProducto = PV.idProducto where idUsuario = @idUsuario";   //TRAE LOS PRODUCTOS VENDIDOS DEL USUARIO PASADO COMO PARAMETRO
                 var parametro = new SqlParameter();
                 parametro.ParameterName = "idUsuario";
                 parametro.SqlDbType = SqlDbType.BigInt;
@@ -258,7 +258,7 @@ namespace Proyecto_Final_Coder_C_.Metodos
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "select id,comentarios,idUsuario from Venta where idUsuario = @idUsuario"; //TRAE TODAS LAS VENTAS DEL USUARIO PASADO COMO PARAMETRO
+                string query = @"select id,comentarios,idUsuario from Venta where idUsuario = @idUsuario"; //TRAE TODAS LAS VENTAS DEL USUARIO PASADO COMO PARAMETRO
                 var parametro = new SqlParameter();
                 parametro.ParameterName = "idUsuario";
                 parametro.SqlDbType = SqlDbType.BigInt;
@@ -282,5 +282,42 @@ namespace Proyecto_Final_Coder_C_.Metodos
             }
             return ventas;
         }
+
+        public static Usuario IniciarSesion(string nombreUsuario, string contrasena)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"select id,nombre,apellido,nombreUsuario,contrasena,mail from Usuario where nombreUsuario = @nombreUsuario and contrasena = @contrasena";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+                    command.Parameters.AddWithValue("@contrasena", contrasena);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Usuario
+                            {
+                                Id = (string)reader["id"],
+                                Nombre = (string)reader["nombre"],
+                                Apellido = (string)reader["apellido"],
+                                NombreUsuario = (string)reader["nombreUsuario"],
+                                Contraseña = (string)reader["contrasena"],
+                                Mail = (string)reader["mail"]
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
