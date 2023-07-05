@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Proyecto_Final_Coder_C_.Modelos;
 
 namespace Proyecto_Final_Coder_C_.Metodos
 {
